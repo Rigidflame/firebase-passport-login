@@ -7,7 +7,7 @@ Use [Express](http://expressjs.com/)'s [Passport](http://passportjs.org/) middle
 
 Why not use Firebase Simple Login?
 ---
-[Firebase Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) is great and we would highly recommend you use it if you want your users to be able to log in with Google, Facebook, Twitter, Github, or with email/password. However, there are still a ton of oAuth providers which aren't supported by Firebase Simple Login. Instead of reinvent the wheel, we integrated Passport and it's [100+ compatible services](http://passportjs.org/guide/providers/) with Firebase. 
+[Firebase Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) is great and we would highly recommend you use it if you want your users to be able to log in with Google, Facebook, Twitter, Github, or with email/password. However, there are still a ton of oAuth providers which aren't supported by Firebase Simple Login. Instead of reinventing the wheel, we integrated Passport and it's [100+ compatible services](http://passportjs.org/guide/providers/) with Firebase. 
 
 Does this mean I have to run my own server?
 ---
