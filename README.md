@@ -58,7 +58,11 @@ Open your HTML file in a browser and watch the magic!
 Adding Services
 --------
 
-To add a service, copy one of the two included example services (Reddit and Foursquare) to a new folder under `/server/services` then modify the `index.js` to use whichever `passport-*` library. The rest of the code is simply initialize the passport strategy which varies slightly between services. The most important part is the translation of `profile` to `user`. The data a provider returns will vary a lot, so this is your chance to normalize the data to match the normal Firebase Simple Login standard (which is used in the included services). This normalization is optional, it's just helps to ensure that the data given to a client is consistent regardless of provider. Once your service is set up, make sure to enable the service in your `/server/config.js` file and you should be ready to call `auth.login(SERVICE)` on your client!
+To add a service, copy one of the two included example services (Reddit and Foursquare) to a new folder under `/server/services` then modify the `index.js` to use whichever `passport-*` library you'd like. 
+
+The rest of the code is just initializes the passport strategy which varies slightly between services. The most important part is the translation of `profile` to `user`. The data a provider returns will vary a lot, so this is your chance to normalize the data to match the normal Firebase Simple Login standard (which is used in the included services). This normalization is optional, it's just helps to ensure that the data given to a client is consistent regardless of provider. 
+
+Once your service is set up, make sure to enable the service in your `/server/config.js` file and you should be ready to call `auth.login(SERVICE)` on your client!
 
 ## Credits
 Development of this library is sponsored by [Rigidflame Consultants](http://www.rigidflame.com).
