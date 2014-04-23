@@ -1,0 +1,23 @@
+{
+    "rules": {
+      "oAuthLogin": {
+        "$uid": {
+          ".read": "auth.uid == $uid",
+          ".write": "auth.uid == $uid"
+        }
+      },
+      "oAuthAccessToken": {
+        "$uid": {
+          ".read": "auth.uid == $uid",
+          ".write": "auth.uid == $uid"
+        },  
+      },
+      "oAuthQueue": {
+        "$ticket": {
+          ".write": "(newData.child('uid').val() == auth.uid && !data.child('uid').exists()) || !newData.exists()",
+          ".read": "data.child('uid').val() == auth.uid", 
+          ".validate": "newData.hasChildren(['uid', 'resource'])"
+        }
+      }
+    }
+}

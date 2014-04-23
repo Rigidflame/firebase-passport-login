@@ -1,0 +1,59 @@
+FirebasePassportLogin
+=======================
+
+Use [Express](http://expressjs.com/)'s [Passport](http://passportjs.org/) middleware authentication libraries with Firebase to authenticate users with an interface identical to Firebase Simple Login for over 100 different providers.
+
+Why not use Firebase Simple Login?
+---
+[Firebase Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) is great and we would highly recommend you use it if you want your users to be able to log in with Google, Facebook, Twitter, Github, or with email/password. However, there are still a ton of oAuth providers which aren't supported by Firebase Simple Login. Instead of reinvent the wheel, we integrated Passport and it's [100+ compatible services](http://passportjs.org/guide/providers/) with Firebase. 
+
+Does this mean I have to run my own server?
+---
+Yes it does. Firebase Passport Login requires you run your own public HTTP server for the providers to redirect to after successful logins. Don't worry though, this is all taken care of. All you need to do is run our server script.
+
+Getting Started
+---
+
+### 1. Set up Anonymous Login in your Firebase
+Open your Firebase in a browser and navigating to Simple Login tab. Then click "Anonymous" and make sure "Enabled" is checked.
+
+*Note: Firebase Passport Login uses Anonymous login interally to create a secure communication line between a Firebase Passport Login client and server.* 
+
+### 2. Include Firebase and Firebase Passport Login on our client
+
+            <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+            <script type='text/javascript' src='client/firebase-passport-login.js'></script>
+            
+### 3. Create a new FirebasePassportLogin on your Client
+If you've used Firebase Simple Login, the next JavaScript snippet will look very familiar.
+
+    var ref = new Firebase('https://<Your Firebase>.firebaseio.com/');
+    var auth = new FirebasePassportLogin(ref, function(error, user) {
+      if (error) {
+        // an error occurred while attempting login
+        console.log(error);
+      } else if (user) {
+        // user authenticated with Firebase
+        console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+      } else {
+        // user is logged out
+      }
+    }, "http://localhost:1337/auth/");
+    
+    auth.login('reddit');
+    
+The only difference between setting up a Simple Login client and a Passport Login client, is that FirebasePassportLogin takes an additional URL parameter, which points to the URL of your authentication server.
+    
+### 4. Configure your Server
+The FPL server has two kinds of config files. The server config file, located at `/server/config.js` and service specific config files located at `/server/services/*/config.js`. These files are self-explanatory and require basic informaiton like which services to load, your Firebase URL, your Firebase Secret, and your oAuth Key/Secret for each service.
+    
+### 5. Start your Server
+On your server (or localhost), navigate to `/server/` and run:
+
+    node server.js
+
+### 6. Log in!
+Open your HTML file in a browser and watch the magic!
+
+## Credits
+Development of this library is sponsored by [Rigidflame Consultants](http://www.rigidflame.com).
