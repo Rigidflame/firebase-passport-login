@@ -1,4 +1,4 @@
-FirebasePassportLogin
+FirebasePassportLogin (Beta!)
 =======================
 
 Use [Express](http://expressjs.com/)'s [Passport](http://passportjs.org/) middleware authentication libraries with Firebase to authenticate users with an interface identical to Firebase Simple Login for over 100 different providers.
@@ -19,12 +19,15 @@ Open your Firebase in a browser and navigating to Simple Login tab. Then click "
 
 *Note: Firebase Passport Login uses Anonymous login interally to create a secure communication line between a Firebase Passport Login client and server.* 
 
-### 2. Include Firebase and Firebase Passport Login on our client
+### 2. Set up the Security Rules in your Firebase
+We've included proper security rules for using Firebase Passport Login under `/server/security-rules.json`, make sure to apply these to your Firebase. This is extremely important for keeping user tokens secure!
+
+### 3. Include Firebase and Firebase Passport Login on our client
 
     <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
     <script type='text/javascript' src='client/firebase-passport-login.js'></script>
             
-### 3. Create a new FirebasePassportLogin on your Client
+### 4. Create a new FirebasePassportLogin on your Client
 If you've used Firebase Simple Login, the next JavaScript snippet will look very familiar.
 
     var ref = new Firebase('https://<Your Firebase>.firebaseio.com/');
@@ -44,15 +47,15 @@ If you've used Firebase Simple Login, the next JavaScript snippet will look very
     
 The only difference between setting up a Simple Login client and a Passport Login client, is that FirebasePassportLogin takes an additional URL parameter, which points to the URL of your authentication server.
     
-### 4. Configure your Server
+### 5. Configure your Server
 The FPL server has two kinds of config files. The server config file, located at `/server/config.js` and service specific config files located at `/server/services/*/config.js`. These files are self-explanatory and require basic informaiton like which services to load, your Firebase URL, your Firebase Secret, and your oAuth Key/Secret for each service.
     
-### 5. Start your Server
+### 6. Start your Server
 On your server (or localhost), navigate to `/server/` and run:
 
     node server.js
 
-### 6. Log in!
+### 7. Log in!
 Open your HTML file in a browser and watch the magic!
 
 Adding Services
