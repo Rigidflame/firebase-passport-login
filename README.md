@@ -21,8 +21,8 @@ Open your Firebase in a browser and navigating to Simple Login tab. Then click "
 
 ### 2. Include Firebase and Firebase Passport Login on our client
 
-            <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
-            <script type='text/javascript' src='client/firebase-passport-login.js'></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+    <script type='text/javascript' src='client/firebase-passport-login.js'></script>
             
 ### 3. Create a new FirebasePassportLogin on your Client
 If you've used Firebase Simple Login, the next JavaScript snippet will look very familiar.
