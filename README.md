@@ -3,15 +3,9 @@ FirebasePassportLogin (Beta!)
 
 Use [Express](http://expressjs.com/)'s [Passport](http://passportjs.org/) middleware authentication libraries with Firebase to authenticate users with an interface identical to Firebase Simple Login for over 100 different providers.
 
+Although Firebase Passport Login only comes with two example integrations (Reddit and Foursquare login), it is extremely easy to add any provider with a Passport library. See below for how to go about adding more services. 
+
 **Do not use Firebase Passport Login in production yet! We are still doing a lot of testing for stability and security. A production ready version is coming soon!**
-
-Why not use Firebase Simple Login?
----
-[Firebase Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) is great and we would highly recommend you use it if you want your users to be able to log in with Google, Facebook, Twitter, Github, or with email/password. However, there are still a ton of oAuth providers which aren't supported by Firebase Simple Login. Instead of reinventing the wheel, we integrated Passport and it's [100+ compatible services](http://passportjs.org/guide/providers/) with Firebase. 
-
-Does this mean I have to run my own server?
----
-Yes it does. Firebase Passport Login requires you run your own public HTTP server for the providers to redirect to after successful logins. Don't worry though, this is all taken care of. All you need to do is run our server script.
 
 Getting Started
 ---
@@ -60,8 +54,17 @@ On your server (or localhost), navigate to `/server/` and run:
 ### 7. Log in!
 Open your HTML file in a browser and watch the magic!
 
-Adding Services
---------
+## FAQ
+
+### Why not use Firebase Simple Login?
+
+[Firebase Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) is great and we would highly recommend you use it if you want your users to be able to log in with Google, Facebook, Twitter, Github, or with email/password. However, there are still a ton of oAuth providers which aren't supported by Firebase Simple Login. Instead of reinventing the wheel, we integrated Passport and it's [100+ compatible services](http://passportjs.org/guide/providers/) with Firebase. 
+
+### Does this mean I have to run my own server?
+
+Yes it does. Firebase Passport Login requires you run your own public HTTP server for the providers to redirect to after successful logins. Don't worry though, this is all taken care of. All you need to do is run our server script.
+
+### How do I add another service?
 
 To add a service, copy one of the two included example services (Reddit and Foursquare) to a new folder under `/server/services` then modify the `index.js` to use whichever `passport-*` library you'd like. 
 
