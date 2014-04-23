@@ -3,6 +3,8 @@ FirebasePassportLogin (Beta!)
 
 Use [Express](http://expressjs.com/)'s [Passport](http://passportjs.org/) middleware authentication libraries with Firebase to authenticate users with an interface identical to Firebase Simple Login for over 100 different providers.
 
+**Do not use Firebase Passport Login in production yet! We are still doing a lot of testing for stability and security. A production ready version is coming soon!**
+
 Why not use Firebase Simple Login?
 ---
 [Firebase Simple Login](https://www.firebase.com/docs/security/simple-login-overview.html) is great and we would highly recommend you use it if you want your users to be able to log in with Google, Facebook, Twitter, Github, or with email/password. However, there are still a ton of oAuth providers which aren't supported by Firebase Simple Login. Instead of reinvent the wheel, we integrated Passport and it's [100+ compatible services](http://passportjs.org/guide/providers/) with Firebase. 
