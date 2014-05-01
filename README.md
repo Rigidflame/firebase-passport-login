@@ -3,7 +3,7 @@ FirebasePassportLogin (Beta!)
 
 Use [Express](http://expressjs.com/)'s [Passport](http://passportjs.org/) middleware authentication libraries with Firebase to authenticate users with an interface identical to Firebase Simple Login for over 100 different providers.
 
-Although Firebase Passport Login only comes with two example integrations (Reddit and Foursquare login), it is extremely easy to add any provider with a Passport library. See below for how to go about adding more services. 
+Although Firebase Passport Login only comes with three example integrations (Reddit, Foursquare, and LinkedIn login), it is extremely easy to add any provider with a Passport library. See below for how to go about adding more services. 
 
 **Do not use Firebase Passport Login in production yet! We are still doing a lot of testing for stability and security. A production ready version is coming soon!**
 
