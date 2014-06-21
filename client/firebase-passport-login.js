@@ -10,7 +10,7 @@ var FirebasePassportLogin = (function (ref, callback, oAuthServerURL) {
     
     self._anonymous_login = function (callback) {
         var firebaseName = self._ref.toString().match(/https:\/\/(.+)\.firebaseio.com/)[1];
-        var callbackName = "fpl_" + self._ref.push().name().replace('-', '');
+        var callbackName = "fpl_" + self._ref.push().name().replace(/-/g, '');
         window[callbackName] = function (data) {
             self._ref.auth(data.token, function (err, auth) {
                 callback(err, auth.auth);   
