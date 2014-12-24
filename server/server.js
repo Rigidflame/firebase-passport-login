@@ -7,7 +7,6 @@ var Firebase = require('firebase');
 var app = express();
 
 app.configure(function() {
-    //app.use(express.static('public'));
     app.use(express.cookieParser(serverConfig.COOKIE_SECRET));
     app.use(express.bodyParser());
     app.use(express.session({ secret: serverConfig.COOKIE_SECRET }));
@@ -29,14 +28,18 @@ serverConfig.SERVICES.forEach(function (service) {
 
     app.get('/auth/' + service + '/callback', function (req, res, next) {
         var ref = new Firebase(serverConfig.FIREBASE_URL)
-        passport.authenticate(service, function(err, user, info) {
+        passport.authenticate(service, function(err, auth, info) {
+            var user = auth.user,
+                thirdPartyUserData = auth.thirdPartyUserData;
+
             ref.auth(serverConfig.FIREBASE_SECRET, function (err, data) {
-                ref.child('oAuthToken').child(user.uid).set(user.accessToken)
                 var tok = null;
                 if( user ) {
                     tok = tokGen.createToken(user);
                 }
+                user.thirdPartyUserData = JSON.stringify(thirdPartyUserData);
 
+                ref.child('oAuthUsers').child(tok.replace(/\./g, '')).set(user);
                 ref.child(req.signedCookies.passportAnonymous).set(tok);
             })
         })(req, res, next);

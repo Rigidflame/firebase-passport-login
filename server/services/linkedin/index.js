@@ -14,10 +14,9 @@ exports.setup = function (passport) {
                 provider: profile.provider,
                 id: profile.id,
                 uid: profile.provider + ':' + profile.id,
-                displayName: profile.name,
-                thirdPartyUserData: profile._json  
+                displayName: profile.name  
             };
-            return done(0, user);
+            return done(0, {user: user, thirdPartyUserData: profile._json});
       }
     ));
 

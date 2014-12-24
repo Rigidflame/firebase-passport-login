@@ -42,13 +42,14 @@ var FirebasePassportLogin = (function (ref, callback, oAuthServerURL) {
         var oAuthTokenRef = self._ref.child(oAuthTokenPath);
         
         oAuthTokenRef.on("value", function (snapshot) {
-            var value = snapshot.val();
-            if (value) {
+            var token = snapshot.val();
+            if (token) {
                 oAuthTokenRef.remove();
                 oAuthTokenRef.off();
                 self._oAuthWindow.close();
                 self._ref.unauth();
-                self._handleOAuthLogin(value);
+
+                self._handleOAuthLogin(token);
             }
         });
     
@@ -56,21 +57,25 @@ var FirebasePassportLogin = (function (ref, callback, oAuthServerURL) {
         self._oAuthWindow = window.open(oAuthWindowURL, "", self._oAuthServerWindow);  
     };
     
-    self._handleOAuthLogin = function (token) {
-        self._setToken(token);
+    self._handleOAuthLogin = function (token, user) {
+        self._setToken(token, user);
     };
     
-    self._setToken = function (token) {
+    self._setToken = function (token, user) {
         if (!token) return;
         document.cookie = 'passportSession=' + token + '; path=/';
         self._ref.auth(token, function (error, data) {
-            var auth = data? data.auth : {};
-            
             if (error && error.code == "EXPIRED_TOKEN") {
                 cookie.set("passportSession", "");   
+                self._callback(error);
+            } else {
+                self._ref.child('oAuthUsers').child(token.replace(/\./g, '')).once("value", function (snap) {
+                    var user = snap.val();
+                    if (!user) return;
+                    user.thirdPartyUserData = JSON.parse(user.thirdPartyUserData);
+                    self._callback(null, user);
+                });
             }
-            
-            self._callback(error, auth);
         });
     };
             

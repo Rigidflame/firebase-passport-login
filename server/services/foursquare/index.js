@@ -14,10 +14,9 @@ exports.setup = function (passport) {
                 accessToken: accessToken,
                 id: profile.id,
                 uid: profile.provider + ':' + profile.id,
-                displayName: profile.name.givenName + ' ' + profile.name.familyName,
-                thirdPartyUserData: profile._json  
+                displayName: profile.name.givenName + ' ' + profile.name.familyName 
             };
-            return done(0, user);
+            return done(0, {user: user, thirdPartyUserData: profile._json});
       }
     ));
 
