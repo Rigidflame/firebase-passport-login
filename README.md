@@ -20,26 +20,30 @@ We've included proper security rules for using Firebase Passport Login under `/s
 
 ### 3. Include Firebase and Firebase Passport Login on our client
 
-    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
-    <script type='text/javascript' src='client/firebase-passport-login.js'></script>
-            
+```html
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+<script type='text/javascript' src='client/firebase-passport-login.js'></script>
+```
+
 ### 4. Create a new FirebasePassportLogin on your Client
 If you've used Firebase Simple Login, the next JavaScript snippet will look very familiar.
 
-    var ref = new Firebase('https://<Your Firebase>.firebaseio.com/');
-    var auth = new FirebasePassportLogin(ref, function(error, user) {
-      if (error) {
-        // an error occurred while attempting login
-        console.log(error);
-      } else if (user) {
-        // user authenticated with Firebase
-        console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-      } else {
-        // user is logged out
-      }
-    }, "http://localhost:1337/auth/");
-    
-    auth.login('reddit');
+```js
+var ref = new Firebase('https://<Your Firebase>.firebaseio.com/');
+var auth = new FirebasePassportLogin(ref, function(error, user) {
+  if (error) {
+    // an error occurred while attempting login
+    console.log(error);
+  } else if (user) {
+    // user authenticated with Firebase
+    console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+  } else {
+    // user is logged out
+  }
+}, "http://localhost:1337/auth/");
+
+auth.login('reddit');
+```
     
 The only difference between setting up a Simple Login client and a Passport Login client, is that FirebasePassportLogin takes an additional URL parameter, which points to the URL of your authentication server.
     
@@ -49,7 +53,9 @@ The FPL server has two kinds of config files. The server config file, located at
 ### 6. Start your Server
 On your server (or localhost), navigate to `/server/` and run:
 
-    node server.js
+```sh
+node server.js
+```
 
 ### 7. Log in!
 Open your HTML file in a browser and watch the magic!
